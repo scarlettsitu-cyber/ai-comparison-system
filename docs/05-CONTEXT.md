@@ -20,45 +20,119 @@
 
 ---
 
-## 最新状态（2025-10-13 17:00）
+## 最新状态（2025-10-13 20:30）
 
-### 上次会话完成内容
+### 上次会话完成内容（会话001 - 项目初始化）
 - ✅ 创建项目目录结构
 - ✅ 初始化Git仓库
-- ✅ 创建6个核心文档
+- ✅ 创建10个文件（6个核心文档 + 4个配置文件）
   - ✅ CLAUDE.md（项目说明书）
-  - ✅ docs/01-DESIGN.md（设计文档）
+  - ✅ docs/01-DESIGN.md（架构设计文档）
   - ✅ docs/02-TASKS.md（任务清单）
-  - ✅ docs/03-WORKFLOW.md（执行规范）
+  - ✅ docs/03-WORKFLOW.md（执行规范）⭐ 最重要
   - ✅ docs/04-CHANGELOG.md（变更记录）
-  - ⏳ docs/05-CONTEXT.md（本文档）
+  - ✅ docs/05-CONTEXT.md（本文档）
+  - ✅ package.json（依赖配置）
+  - ✅ tsconfig.json（TypeScript配置）
+  - ✅ .gitignore（Git忽略规则）
+  - ✅ README.md（项目说明）
+- ✅ 首次Git提交（commit: 1577ca1）
+
+### 上次会话完成内容（会话002 - 需求澄清与test1验证）
+- ✅ **验证test1项目功能**
+  - ✅ 执行单次测试：`node doubao-query-test.mjs` ✅ 通过
+  - ✅ 执行批量测试：`node doubao-batch-query.mjs` ✅ 通过
+  - ✅ 确认test1豆包demo完全正常，未被影响
+  - ✅ 删除test1根目录的5个测试文件（保持干净）
+
+- ✅ **明确用户核心需求**
+  - ✅ 查询问题和AI回复都要存入数据库
+  - ✅ 串行模式为保底方案（不强制并行）
+  - ✅ 并行方案：单AI多问题并行（Puppeteer多Page）
+  - ✅ 系统资源评估公式已确定
+  - ✅ 4个CLI"界面"需求已明确
+
+- ✅ **技术可行性验证**
+  - ✅ 调用deep-search-expert验证Puppeteer多标签并行
+  - ✅ 结论：单Browser实例可同时管理10个Page，速度提升10倍
+  - ✅ 资源消耗可控：10个Page约1.5GB内存
 
 ### 当前正在进行
-- ⏳ **Phase 0.2**: 核心文档编写
-  - 📂 当前文件：`docs/05-CONTEXT.md`
-  - 📊 进度：90%（5/6文档完成）
-  - ⏭️ 下一步：创建配置文件（package.json、tsconfig.json、.gitignore、README.md）
+- ⏳ **准备新窗口切换**
+  - 📂 当前会话即将结束
+  - 📝 已更新CONTEXT.md记录所有进度
+  - 📋 下次会话将在ai-comparison-system目录开始
 
-### 下次会话待办
-1. 【优先】创建package.json配置文件
-2. 创建tsconfig.json配置文件
-3. 创建.gitignore文件
-4. 创建README.md项目说明
-5. 首次Git提交
-6. 与用户确认所有文档内容
-7. 如果用户同意，开始Phase 1开发
+### 下次会话待办（⭐ 优先级排序）
 
-### 重要提醒
-- ⚠️ 所有文档创建完成后，必须让用户审阅
-- ⚠️ 用户确认后才开始Phase 1开发
-- ⚠️ package.json需要包含所有必要的依赖
-- ⚠️ tsconfig.json需要启用严格模式
+#### 【紧急】更新核心文档（基于用户反馈）
+1. **更新CLAUDE.md**
+   - 明确chrome-devtools-mcp安装方案（npm install）
+   - 添加test1作为参考项目的说明
+   - 更新技术决策部分
 
-### 本次会话统计
-- 工作时长：1小时
-- 完成任务：6个（目录创建 + 5个文档）
-- 文档行数：约5000行
-- Git提交数：0次（等待所有文档完成后统一提交）
+2. **更新docs/01-DESIGN.md**
+   - 澄清最终需求（查询+回复都存数据库）
+   - 简化并行方案：
+     - 阶段1：串行模式（保底）
+     - 阶段2：单AI多问题并行
+     - 阶段3：混合并行（可选）
+   - 添加系统资源评估公式
+   - 移除复杂的多AI并行方案
+
+3. **创建docs/06-CLI-DESIGN.md**（新文档）
+   - 设计4个CLI"界面"的命令实现
+   - AI应用管理：`ai-compare status`, `ai-compare login`
+   - 任务管理：`ai-compare query`, `ai-compare batch`
+   - 演示模式：`ai-compare demo`
+   - 错误处理规范和日志记录
+   - 提供ASCII界面原型和交互流程
+
+#### 【其次】环境配置
+4. 安装依赖：`cd ai-comparison-system && npm install`
+5. 验证chrome-devtools-mcp安装
+6. 验证TypeScript编译
+
+#### 【最后】开始Phase 1开发
+7. 从test1拷贝豆包代码并调整
+8. 实现IAIProvider接口
+9. ...（详见docs/02-TASKS.md）
+
+### 重要提醒（⚠️ 必读）
+
+#### 关于chrome-devtools-mcp
+- ✅ **新项目独立安装**：`npm install chrome-devtools-mcp`
+- ✅ **test1保持原样**：作为豆包demo参考，不再修改
+- ❌ **不复用test1的安装**：避免耦合和冲突
+
+#### 关于test1项目
+- 📁 **位置**：`/Users/situruimin/project/test1/chrome-devtools-mcp/`
+- 🎯 **定位**：已跑通的豆包demo，保持作为参考
+- ✅ **功能验证**：单次测试和批量测试全部通过
+- 🔒 **保持不变**：后续开发在ai-comparison-system进行
+
+#### 关于并行方案
+- ⚠️ **不是强制需求**：开发难度低 + 实际有效 > 复杂方案
+- ✅ **推荐方案**：单AI多问题并行（Puppeteer多Page）
+- ✅ **已验证可行**：10并发速度提升10倍，内存约1.5GB
+- ✅ **保底方案**：串行模式（10问题×5AI=250秒≈4分钟）
+
+#### 关于CLI界面
+- 4个"界面"实际是CLI命令，不是Web界面
+- 使用Commander.js + Inquirer.js + Chalk + Ora
+- 需要ASCII艺术展示状态和结果
+- 需要完善的进度条和错误提示
+
+### 本次会话统计（会话002）
+- 工作时长：2小时
+- 完成任务：
+  - ✅ test1功能验证（2个测试）
+  - ✅ 需求澄清（4个关键问题）
+  - ✅ 技术可行性验证（Puppeteer并发）
+  - ✅ test1文件清理
+  - ✅ CONTEXT.md更新
+- 技术调研：深度搜索Puppeteer并发能力
+- Git提交数：0次（在ai-comparison-system，等待文档更新后提交）
 
 ---
 
