@@ -20,85 +20,126 @@
 
 ---
 
-## 最新状态（2025-10-13 20:30）
+## 最新状态（2025-10-18 22:25）
 
-### 上次会话完成内容（会话001 - 项目初始化）
-- ✅ 创建项目目录结构
-- ✅ 初始化Git仓库
-- ✅ 创建10个文件（6个核心文档 + 4个配置文件）
-  - ✅ CLAUDE.md（项目说明书）
-  - ✅ docs/01-DESIGN.md（架构设计文档）
-  - ✅ docs/02-TASKS.md（任务清单）
-  - ✅ docs/03-WORKFLOW.md（执行规范）⭐ 最重要
-  - ✅ docs/04-CHANGELOG.md（变更记录）
-  - ✅ docs/05-CONTEXT.md（本文档）
-  - ✅ package.json（依赖配置）
-  - ✅ tsconfig.json（TypeScript配置）
-  - ✅ .gitignore（Git忽略规则）
-  - ✅ README.md（项目说明）
-- ✅ 首次Git提交（commit: 1577ca1）
+### 上次会话完成内容（会话003 - TUI架构确定与文档更新）
+- ✅ **TUI设计确认**
+  - ✅ 确认使用blessed框架创建6个TUI界面
+  - ✅ 确定3种执行模式（串行/方案A多AI并行/方案B单AI多问题并行）
+  - ✅ 确定双输出模式（演示模式/写库模式）
+  - ✅ 设计系统资源评估算法
+  - ✅ 提供完整的6个界面ASCII原型（用户已确认）
 
-### 上次会话完成内容（会话002 - 需求澄清与test1验证）
-- ✅ **验证test1项目功能**
-  - ✅ 执行单次测试：`node doubao-query-test.mjs` ✅ 通过
-  - ✅ 执行批量测试：`node doubao-batch-query.mjs` ✅ 通过
-  - ✅ 确认test1豆包demo完全正常，未被影响
-  - ✅ 删除test1根目录的5个测试文件（保持干净）
+- ✅ **核心文档更新**（4个文件）
+  - ✅ CLAUDE.md - 更新技术栈、添加决策#002-#006
+  - ✅ docs/01-DESIGN.md - 重写Section 5（执行模式）和Section 7（TUI设计）
+  - ✅ docs/02-TASKS.md - 修改Phase 1.9（TUI框架）、完全重写Phase 2（TUI任务）
+  - ✅ docs/04-CHANGELOG.md - 新增变更#002（CLI→TUI）、#003（演示模式）、#004（并行模式）
+  - ✅ docs/05-CONTEXT.md - 已更新
 
-- ✅ **明确用户核心需求**
-  - ✅ 查询问题和AI回复都要存入数据库
-  - ✅ 串行模式为保底方案（不强制并行）
-  - ✅ 并行方案：单AI多问题并行（Puppeteer多Page）
-  - ✅ 系统资源评估公式已确定
-  - ✅ 4个CLI"界面"需求已明确
+### 本次会话完成内容（会话004 - 文档架构优化与TASKS重组）
+- ✅ **文档架构优化（Claude上下文管理）**
+  - ✅ 调研Claude Code最佳实践（CLAUDE.md应<40000字符）
+  - ✅ CLAUDE.md瘦身（421行→199行，57%减少）
+  - ✅ 创建docs/DECISIONS.md（7条技术决策）
+  - ✅ 创建docs/DEV-STANDARDS.md（开发规范）
+  - ✅ 实施`@`语法懒加载策略
+  - ✅ 创建3个子目录CLAUDE.md（providers/、tui/、services/）
 
-- ✅ **技术可行性验证**
-  - ✅ 调用deep-search-expert验证Puppeteer多标签并行
-  - ✅ 结论：单Browser实例可同时管理10个Page，速度提升10倍
-  - ✅ 资源消耗可控：10个Page约1.5GB内存
+- ✅ **TUI产品设计文档**（10个文件）
+  - ✅ docs/06-TUI-DESIGN/00-overview.md（9000+字TUI总览）
+  - ✅ 01-07: 7个界面详细设计（ASCII原型+交互流程）
+  - ✅ 08-10: 公共组件、键盘规范、错误处理设计
+
+- ✅ **TASKS.md重组（YAGNI原则）**
+  - ✅ Phase 1精简为6个子任务（豆包MVP闭环）
+  - ✅ Phase 2: Kimi/DeepSeek Provider（需先手动测试）
+  - ✅ Phase 3: TUI完整界面 + 组件库
+  - ✅ Phase 4: 并行执行模式
+  - ✅ Phase 5: 扩展功能
+
+- ✅ **架构文档**
+  - ✅ 创建docs/ARCHITECTURE.md（MVP架构+延后模块标记）
+  - ✅ 更新docs/05-CONTEXT.md（本文档）
 
 ### 当前正在进行
-- ⏳ **准备新窗口切换**
-  - 📂 当前会话即将结束
-  - 📝 已更新CONTEXT.md记录所有进度
-  - 📋 下次会话将在ai-comparison-system目录开始
+- ⏳ **准备Git提交**
+  - 📋 下一步：Git add所有文档
+  - 💾 Git commit（详细变更说明）
+  - 🚀 Git push到GitHub/GitLab
 
-### 下次会话待办（⭐ 优先级排序）
+### 下次会话待办（⭐ Phase 0.3 - 环境配置）
 
-#### 【紧急】更新核心文档（基于用户反馈）
-1. **更新CLAUDE.md**
-   - 明确chrome-devtools-mcp安装方案（npm install）
-   - 添加test1作为参考项目的说明
-   - 更新技术决策部分
+#### 【紧急】环境配置与依赖安装
+1. **创建配置文件**
+   - package.json（定义依赖和脚本）
+   - tsconfig.json（TypeScript配置）
+   - .gitignore（Git忽略规则）
+   - README.md（项目说明）
 
-2. **更新docs/01-DESIGN.md**
-   - 澄清最终需求（查询+回复都存数据库）
-   - 简化并行方案：
-     - 阶段1：串行模式（保底）
-     - 阶段2：单AI多问题并行
-     - 阶段3：混合并行（可选）
-   - 添加系统资源评估公式
-   - 移除复杂的多AI并行方案
+2. **安装核心依赖**
+   ```bash
+   # 核心运行时
+   npm install chrome-devtools-mcp
+   npm install better-sqlite3
 
-3. **创建docs/06-CLI-DESIGN.md**（新文档）
-   - 设计4个CLI"界面"的命令实现
-   - AI应用管理：`ai-compare status`, `ai-compare login`
-   - 任务管理：`ai-compare query`, `ai-compare batch`
-   - 演示模式：`ai-compare demo`
-   - 错误处理规范和日志记录
-   - 提供ASCII界面原型和交互流程
+   # TUI依赖
+   npm install blessed cli-table3 chalk ora boxen
 
-#### 【其次】环境配置
-4. 安装依赖：`cd ai-comparison-system && npm install`
-5. 验证chrome-devtools-mcp安装
-6. 验证TypeScript编译
+   # 开发依赖
+   npm install -D typescript @types/node
+   npm install -D jest @types/jest ts-jest
+   npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+   ```
 
-#### 【最后】开始Phase 1开发
-7. 从test1拷贝豆包代码并调整
-8. 实现IAIProvider接口
-9. ...（详见docs/02-TASKS.md）
+3. **验证环境**
+   - 运行`npx tsc --version`（确认TypeScript安装成功）
+   - 运行`npm test`（确认测试环境配置正确）
+   - 创建简单的hello.ts测试编译
+
+4. **Git提交环境配置**
+   - commit消息：`chore(env): 配置开发环境和依赖`
+
+#### 【其次】准备Phase 1开发
+5. 创建src/目录结构（空白文件和.gitkeep）
+6. 从test1拷贝豆包代码的准备工作
+7. 确认下一步开始Phase 1.1（核心接口定义）
 
 ### 重要提醒（⚠️ 必读）
+
+#### 关于文档架构优化
+- ✅ **CLAUDE.md瘦身成功**：421行→199行（5.6KB，安全范围）
+- ✅ **`@`语法**：使用`@docs/DESIGN.md`实现懒加载
+- ✅ **子目录CLAUDE.md**：进入src/providers/时自动加载对应规范
+- ✅ **分离文档**：DECISIONS.md记录决策、DEV-STANDARDS.md记录规范
+
+#### 关于MVP优先原则（YAGNI）
+- ✅ **Phase 1目标**：登录豆包 → 提交问题 → 获取回复 → 写入数据库（串行模式）
+- ❌ **Phase 1不包含**：Kimi、DeepSeek、并行模式、演示模式
+- ✅ **只有5个TUI界面**：Level 0、1-A、1-B（简化版）、2-B、3-B
+- ⚠️ **先测试后开发**：Kimi和DeepSeek需要先手动测试登录流程
+
+#### 关于Git策略
+- ✅ **现在就推送到GitHub**：用户已选择立即推送（不等MVP完成）
+- ✅ **Phase 0.3前安装依赖**：用户已选择Phase 1启动前安装
+
+#### 关于TUI架构
+- ✅ **使用blessed框架**：创建6个TUI界面（Level 0-3B）
+- ✅ **不是CLI命令**：不使用Commander.js，而是全屏终端界面
+- ✅ **不是Web GUI**：不需要Electron，在终端内完成所有交互
+- ✅ **键盘导航**：↑↓选择、Space多选、Enter确认、Tab切换、Q返回
+
+#### 关于双输出模式
+- ✅ **演示模式（Demo Mode）**：不写库，缓存在内存，Level 3-A展示结果（Phase 3延后）
+- ✅ **写库模式（Database Mode）**：立即写库，Level 3-B展示统计和失败处理（Phase 1 MVP）
+- ⚠️ **MVP只做写库模式**：演示模式延后到Phase 3
+
+#### 关于三种执行模式
+- ⚠️ **必须逐个开发**：串行→方案A→方案B，每个都要用户确认效果
+- ✅ **串行模式**：保底方案，~500MB内存，最慢但最稳定（Phase 1 MVP）
+- ❌ **方案A（多AI并行）**：Phase 4延后
+- ❌ **方案B（单AI多问题并行）**：Phase 4延后
+- ❌ **自动选择**：Phase 4延后（ResourceEvaluator）
 
 #### 关于chrome-devtools-mcp
 - ✅ **新项目独立安装**：`npm install chrome-devtools-mcp`
@@ -111,32 +152,103 @@
 - ✅ **功能验证**：单次测试和批量测试全部通过
 - 🔒 **保持不变**：后续开发在ai-comparison-system进行
 
-#### 关于并行方案
-- ⚠️ **不是强制需求**：开发难度低 + 实际有效 > 复杂方案
-- ✅ **推荐方案**：单AI多问题并行（Puppeteer多Page）
-- ✅ **已验证可行**：10并发速度提升10倍，内存约1.5GB
-- ✅ **保底方案**：串行模式（10问题×5AI=250秒≈4分钟）
-
-#### 关于CLI界面
-- 4个"界面"实际是CLI命令，不是Web界面
-- 使用Commander.js + Inquirer.js + Chalk + Ora
-- 需要ASCII艺术展示状态和结果
-- 需要完善的进度条和错误提示
-
-### 本次会话统计（会话002）
-- 工作时长：2小时
+### 本次会话统计（会话004）
+- 工作时长：2.5小时
 - 完成任务：
-  - ✅ test1功能验证（2个测试）
-  - ✅ 需求澄清（4个关键问题）
-  - ✅ 技术可行性验证（Puppeteer并发）
-  - ✅ test1文件清理
-  - ✅ CONTEXT.md更新
-- 技术调研：深度搜索Puppeteer并发能力
-- Git提交数：0次（在ai-comparison-system，等待文档更新后提交）
+  - ✅ 文档架构优化（CLAUDE.md瘦身、创建DECISIONS.md、DEV-STANDARDS.md）
+  - ✅ 创建3个子目录CLAUDE.md
+  - ✅ 创建10个TUI产品设计文档
+  - ✅ 重组TASKS.md为MVP优先（5个Phase重新划分）
+  - ✅ 创建ARCHITECTURE.md（MVP架构文档）
+  - ✅ 更新CONTEXT.md（当前）
+  - ⏳ Git提交和推送
+- 技术调研：Claude Code上下文管理最佳实践
+- Git提交数：0次（等待完成后一次性提交）
 
 ---
 
 ## 历史记录
+
+### 2025-10-18 22:25 - 会话004（文档架构优化）
+
+#### 完成内容
+- ✅ 文档架构优化（CLAUDE.md瘦身、DECISIONS.md、DEV-STANDARDS.md）
+- ✅ 创建3个子目录CLAUDE.md（providers/、tui/、services/）
+- ✅ 创建10个TUI产品设计文档（docs/06-TUI-DESIGN/）
+- ✅ 重组TASKS.md为MVP优先（5个Phase重新划分）
+- ✅ 创建ARCHITECTURE.md（MVP架构文档）
+- ✅ 更新CONTEXT.md（本文档）
+- ⏳ Git提交和推送
+
+#### 遇到的问题
+- 文档膨胀问题：用户担心Claude上下文腐烂（过多大文件导致性能下降）
+- 解决方法：调研Claude Code最佳实践，实施CLAUDE.md瘦身和`@`语法懒加载
+
+#### 重要决策
+- 采用YAGNI原则：Phase 1只做豆包MVP闭环，延后Kimi/DeepSeek/并行模式
+- Git策略：现在就推送到GitHub（不等MVP完成）
+- 依赖安装：Phase 0.3环境配置时统一安装
+
+#### 下次继续
+- Git add所有文档
+- Git commit（详细变更说明）
+- Git push到GitHub/GitLab
+- Phase 0.3：环境配置和依赖安装
+
+#### 会话标识
+- ID: 2025-10-18-004
+- 用户: @situruimin
+- 耗时: 2.5小时
+
+---
+
+### 2025-10-18 21:00 - 会话003（TUI架构确定）
+
+#### 完成内容
+- ✅ TUI设计确认（6个界面、3种执行模式、双输出模式）
+- ✅ 更新CLAUDE.md（技术栈、决策记录）
+- ✅ 更新docs/01-DESIGN.md（Section 5+7完全重写）
+- ✅ 更新docs/02-TASKS.md（Phase 1.9+2完全重写）
+- ✅ 更新docs/04-CHANGELOG.md（新增3条变更）
+- ✅ 更新docs/05-CONTEXT.md（本文档）
+
+#### 遇到的问题
+- 需求理解：用户历史需求提到"界面、按钮、表单"，最初误解为Web GUI
+- 解决方法：通过AskUserQuestion澄清，确定为TUI（Terminal User Interface）
+
+#### 下次继续
+- 创建docs/06-TUI-DESIGN/目录和11个详细设计文档
+- Git提交所有变更
+
+#### 会话标识
+- ID: 2025-10-18-003
+- 用户: @situruimin
+- 耗时: 2小时
+
+---
+
+### 2025-10-13 20:30 - 会话002（需求澄清）
+
+#### 完成内容
+- ✅ test1项目功能验证（2个测试通过）
+- ✅ 需求澄清（4个关键问题）
+- ✅ 技术可行性验证（Puppeteer并发）
+- ✅ test1文件清理
+
+#### 遇到的问题
+- 并行方案的选择和资源消耗
+- 解决方法：deep-search-expert调研Puppeteer并发能力
+
+#### 下次继续
+- 更新核心文档
+- 创建TUI设计文档
+
+#### 会话标识
+- ID: 2025-10-13-002
+- 用户: @situruimin
+- 耗时: 2小时
+
+---
 
 ### 2025-10-13 16:25 - 会话001（项目初始化）
 
@@ -185,19 +297,19 @@
 
 ### 当前Phase
 **Phase 0 - 项目初始化**
-- 进度：80%
-- 预计完成时间：今天（2025-10-13）
+- 进度：95%（文档阶段完成，待Git提交）
+- 预计完成时间：本次会话结束后（2025-10-18 23:00）
 
 ### 当前任务
-**[0.2] 核心文档编写**
-- 子任务：6个
-- 已完成：5个
-- 进行中：1个（CONTEXT.md）
+**[0.2] 核心文档编写与TUI设计**
+- 子任务：5个主要文档 + 10个TUI设计文档 + 架构文档
+- 已完成：全部完成
+- 进行中：Git提交准备
 
 ### 下一个任务
-**[0.3] 开发环境配置**
+**[0.3] 环境配置与依赖安装**（下次会话）
 - 预计耗时：30分钟
-- 包含：package.json、tsconfig.json、.gitignore、README.md
+- 包含：package.json、tsconfig.json、.gitignore、依赖安装、验证
 
 ### 阻塞问题
 - 无
@@ -210,15 +322,27 @@
 - [2025-10-13] 采用6个核心文档管理项目
 - [2025-10-13] 使用Markdown Checkbox追踪任务
 - [2025-10-13] 制定严格的三大Checklist规范
+- [2025-10-18] 采用blessed框架创建TUI界面
+- [2025-10-18] 设计双输出模式（演示/写库）
+- [2025-10-18] 统一设计三种执行模式
+- [2025-10-18] CLAUDE.md瘦身策略（421→199行）
+- [2025-10-18] 实施`@`语法懒加载
+- [2025-10-18] MVP优先原则（YAGNI）：Phase 1只做豆包闭环
 
 ### 学到的经验
 - 文档驱动可以有效避免项目失控
 - CONTEXT.md是跨窗口协作的关键
 - 详细的WORKFLOW可以保证执行一致性
+- 需求澄清至关重要：GUI vs CLI vs TUI需要明确区分
+- blessed框架可以在终端内提供类似GUI的体验
+- Claude Code上下文管理：CLAUDE.md应<40000字符，使用`@`语法懒加载
+- 子目录CLAUDE.md自动加载：模块化文档管理
+- YAGNI原则：先完成MVP闭环，再扩展功能
 
 ### 待解决的疑问
-- chrome-devtools-mcp的并行模式是否真能提升3倍速度？（需要实测）
+- blessed框架的性能在大量数据刷新时是否会卡顿？（需要测试）
 - SQLite的性能是否能满足批量查询需求？（需要压测）
+- Phase 1 MVP的实际开发耗时会是5天吗？（待验证）
 
 ---
 
@@ -226,28 +350,24 @@
 
 ### Phase 0: 项目初始化
 ```
-[████████████████░░] 80%
+[███████████████████░] 95%
 
 ✅ 0.1 项目结构创建（100%）
-⏳ 0.2 核心文档编写（90%）
-☐ 0.3 开发环境配置（0%）
-☐ 0.4 首次提交（0%）
+✅ 0.2 核心文档编写（100%）- 所有文档完成
+☐ 0.3 开发环境配置（0%）- 下次会话
+☐ 0.4 首次提交（50%）- 待Git push
 ```
 
-### Phase 1: MVP基础功能
+### Phase 1: MVP核心闭环
 ```
 [░░░░░░░░░░░░░░░░░░] 0%
 
 ☐ 1.1 核心接口定义
-☐ 1.2 BaseProvider抽象类
-☐ 1.3 豆包Provider开发
-☐ 1.4 会话管理服务
-☐ 1.5 Kimi Provider开发
-☐ 1.6 DeepSeek Provider开发
-☐ 1.7 数据库服务
-☐ 1.8 QueryService编排服务
-☐ 1.9 CLI命令框架
-☐ 1.10 集成测试
+☐ 1.2 豆包Provider开发
+☐ 1.3 数据库服务
+☐ 1.4 QueryService串行编排
+☐ 1.5 TUI最小化界面（5个必需界面）
+☐ 1.6 端到端测试
 ```
 
 ---
@@ -256,12 +376,15 @@
 
 ### 已完成的里程碑
 - ✅ [2025-10-13] 项目立项，确定技术方案
+- ✅ [2025-10-13] 完成核心文档编写
+- ✅ [2025-10-18] TUI架构确定，文档大幅更新
+- ✅ [2025-10-18] 文档架构优化，TASKS重组为MVP优先
 
 ### 即将到来的里程碑
-- 📅 [2025-10-13] 完成所有核心文档（预计今天）
-- 📅 [2025-10-14] 开始Phase 1开发
-- 📅 [2025-10-18] 完成3个AI Provider
-- 📅 [2025-10-20] Phase 1 MVP完成
+- 📅 [2025-10-18] Git提交并推送到GitHub（本次会话结束）
+- 📅 [2025-10-19] Phase 0.3：环境配置和依赖安装
+- 📅 [2025-10-21] 开始Phase 1：核心接口定义和豆包Provider开发
+- 📅 [2025-10-27] Phase 1 MVP完成（豆包闭环）
 
 ---
 
@@ -280,6 +403,6 @@
 
 ---
 
-**Last Updated**: 2025-10-13 17:00
-**Current Session**: 2025-10-13-001
-**Next Session**: TBD（等待用户审阅文档后开新窗口）
+**Last Updated**: 2025-10-18 22:25
+**Current Session**: 2025-10-18-004
+**Next Session**: Phase 0.3 - 环境配置和依赖安装
